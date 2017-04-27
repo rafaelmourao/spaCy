@@ -150,9 +150,9 @@ p
         for itn in range(20):
             random.shuffle(train_data)
             for raw_text, entity_offsets in train_data:
-                gold = GoldParse(doc, entities=entity_offsets)
                 doc = nlp.make_doc(raw_text)
                 nlp.tagger(doc)
+                gold = GoldParse(doc, entities=entity_offsets)
                 loss = nlp.entity.update(doc, gold)
         nlp.end_training()
         nlp.save_to_directory(output_dir)
